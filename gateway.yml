@@ -12,7 +12,7 @@ eureka:
 
 zuul:
   routes:
-    eureka:
+    discovery:
         path: /eureka/**
         sensitive-headers: Set-Cookie,Authorization
         url: http://localhost:8761
@@ -27,7 +27,7 @@ hystrix:
         isolation:
           thread.:
             timeoutInMilliseconds: 600000
-    eureka:
+    discovery:
       execution:
         isolation:
           thread.:
