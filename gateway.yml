@@ -22,15 +22,16 @@ eureka:
     region: default
     registryFetchIntervalSeconds: 5
 
-zuul:
-  routes:
-    data:
-      path: /books/**
-      url: http://localhost:8081
-#    discovery:
-#      path: /eureka/**
-#      url: http://localhost:8761
-  sensitive-headers: Cookie,Set-Cookie
+#zuul:
+#  routes:
+#    data:
+#      path: /books/**
+#      url: http://localhost:8081
+#      serviceId: books_service
+##    discovery:
+##      path: /eureka/**
+##      url: http://localhost:8761
+#  sensitive-headers: Cookie,Set-Cookie
 
 #hystrix:
 #  command:
