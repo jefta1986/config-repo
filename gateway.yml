@@ -4,41 +4,41 @@ server:
 spring:
   application:
     name: gateway
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: data-service
-          uri: lb://data
-          predicates:
-            - Path=/books/**
-          filters:
-            - RewritePath=/books/(?<path>.*), /$\{path}
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#      routes:
+#        - id: data-service
+#          uri: lb://data
+#          predicates:
+#            - Path=/books/**
+#          filters:
+#            - RewritePath=/books/(?<path>.*), /$\{path}
 
 eureka:
   client:
     region: default
     registryFetchIntervalSeconds: 5
 
-#zuul:
-#  routes:
+zuul:
+  routes:
+    data:
+      path: /books/**
+      url: http://localhost:8081
 #    discovery:
-#        path: /eureka/**
-#        sensitive-headers: Set-Cookie,Authorization
-#        url: http://localhost:8761
-#    data:
-#      path: /books/**
-#      sensitive-headers: Set-Cookie,Authorization
+#      path: /eureka/**
+#      url: http://localhost:8761
+  sensitive-headers: Cookie,Set-Cookie
 
-#hystrix:
-#  command:
-#    data:
-#      execution:
-#        isolation:
-#          thread.:
-#            timeoutInMilliseconds: 600000
+hystrix:
+  command:
+    data:
+      execution:
+        isolation:
+          thread.:
+            timeoutInMilliseconds: 600000
 #    discovery:
 #      execution:
 #        isolation:
