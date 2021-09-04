@@ -10,6 +10,29 @@ eureka:
     region: default
     registryFetchIntervalSeconds: 5
 
+zuul:
+  routes:
+    eureka:
+        path: /eureka/**
+        sensitive-headers: Set-Cookie,Authorization
+        url: http://localhost:8082
+    data:
+      path: /books/**
+      sensitive-headers: Set-Cookie,Authorization
+
+hystrix:
+  command:
+    data:
+      execution:
+        isolation:
+          thread.:
+            timeoutInMilliseconds: 600000
+    eureka:
+      execution:
+        isolation:
+          thread.:
+            timeoutInMilliseconds: 600000
+
 
 #    serviceUrl:
 #      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
@@ -17,13 +40,3 @@ eureka:
 #    fetchRegistry: false
 #  instance:
 #    preferIpAddress: true
-
-#  spring
-#  data
-#  mongodb
-#authentication-database: admin
-#username: root
-#password: root
-#database: test_db
-#port: 27017
-#host: localhost
