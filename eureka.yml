@@ -1,9 +1,9 @@
 spring:
   application:
     name: eureka
-#  cloud:
-#    config:
-#      name: eureka
+  cloud:
+    config:
+      name: eureka
 #      uri: http://localhost:8888
 
 server:
